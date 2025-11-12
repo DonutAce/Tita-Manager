@@ -1,0 +1,141 @@
+/* =======================
+   NAVBAR BASE STYLES
+======================= */
+.header {
+    background-color: #393E46;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(250, 249, 246, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    color: #FAF9F6;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-btn {
+    background: #00ADB5;
+    color: #222831;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.menu-btn:hover {
+    background: #00c4d4;
+}
+
+.header-left h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: inherit;
+}
+
+.header-right p:first-child {
+    font-weight: 600;
+    color: inherit;
+}
+
+.header-right p:last-child {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    color: inherit;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(34, 40, 49, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+/* =======================
+   RESPONSIVE NAVBAR
+======================= */
+@media (max-width: 480px) {
+    .header {
+        padding: 0 15px;
+        height: 70px;
+    }
+    .header-left h1 {
+        font-size: 1.5rem;
+    }
+    .menu-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .header {
+        padding: 0 10px;
+        height: 60px;
+    }
+    .header-left h1 {
+        font-size: 1.3rem;
+    }
+    .header-right {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .header-left h1 {
+        font-size: 1.2rem;
+    }
+    .menu-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+
+/*---------------------------light mode here-----------------------------------------*/
+
+/*--------------------------- Light Mode Navbar ---------------------------*/
+body.light-theme .header {
+    background-color: #ffffff;
+    color: #121212;
+    border-bottom: 1px solid rgba(18, 18, 18, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body.light-theme .header-left h1 {
+    color: #121212;
+}
+
+body.light-theme .menu-btn {
+    background: #00ADB5;
+    color: #ffffff;
+}
+
+body.light-theme .menu-btn:hover {
+    background: #00c4d4;
+}
+
+body.light-theme .header-right p:first-child,
+body.light-theme .header-right p:last-child {
+    color: #121212;
+}
+
+body.light-theme .overlay {
+    background: rgba(255, 255, 255, 0.8);
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Tita Manager</title>
+  <meta name="description" content="Welcome to Tita Manager - Your personal task management system">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Styles/Homes.css">
+  <link rel="stylesheet" href="Styles/sidebar.css">
+  <link rel="stylesheet" href="Styles/navbar.css">
+  <link rel="icon" type="image/png" href="Images/icon-logo.png">
+</head>
+
+<body>
+  <!-- Loading Screen -->
+  <div id="loadingScreen">
+    <div class="loader"></div>
+    <p>Loading Home...</p>
+  </div>
+
+  <input type="checkbox" id="sidebar-toggle">
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Tita Manager</h2>
+      <label for="sidebar-toggle" class="close-btn">✕</label>
+    </div>
+
+    <div class="sidebar-nav">
+      <a href="home.html" class="nav-link active">🏠 Home</a>
+      <a href="profile.html" class="nav-link">👤 Profile</a>
+      <a href="CTask.html" class="nav-link">➕ Create a Task</a>
+      <a href="games.html" class="nav-link">🎮 Games</a>
+      <a href="feedback.html" class="nav-link">💬 Give Feedback</a>
+      <a href="settings.html" class="nav-link">⚙️ Settings</a>
+      <a href="about.html" class="nav-link">ℹ️ About us</a>
+      <a href="#" class="nav-link logout">🚪 Logout</a>
+    </div>
+
+    <div class="sidebar-footer">
+      <p>Hello there!</p>
+      <p>Hope you're having a great day!</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="pageContent" class="main-content" style="display: none;">
+    <header class="header">
+      <div class="header-left">
+        <label for="sidebar-toggle" class="menu-btn">☰ Menu</label>
+        <h1>Tita Manager</h1>
+      </div>
+      <div class="header-right">
+        <p>Profile</p>
+        <p>View your info</p>
+      </div>
+    </header>
+
+    <main class="home-container">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1>Welcome to Tita Manager</h1>
+          <p>Your personal productivity companion for students and professionals</p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">0</span>
+              <span class="stat-label">XP Points</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">0</span>
+              <span class="stat-label">Tasks Done</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">0</span>
+              <span class="stat-label">Achievements</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Actions Grid -->
+      <section class="actions-grid">
+        <div class="action-card">
+          <div class="card-icon">📝</div>
+          <h3>Create Task</h3>
+          <p>Start organizing your work efficiently</p>
+          <button class="action-btn"><a href="CTask.html"> Get Started</a></button>
+        </div>
+
+        <div class="action-card">
+          <div class="card-icon">🎮</div>
+          <h3>Play Games</h3>
+          <p>Earn rewards while having fun</p>
+          <button class="action-btn"><a href="games.html"> Play Now</a></button>
+        </div>
+
+        <div class="action-card">
+          <div class="card-icon">👤</div>
+          <h3>Profile</h3>
+          <p>View your progress and achievements</p>
+          <button class="action-btn"><a href="profile.html"> View Profile</a></button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="overlay"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="./js/theme.js"></script>
+  <script type="module" src="./js/home.js"></script>
+  <script type="module" src="./js/auth-check.js"></script>
+
+  <script>
+    // Wait for stats to load from home.js, then hide loading screen
+    document.addEventListener("homeDataLoaded", () => {
+      const loading = document.getElementById("loadingScreen");
+      const content = document.getElementById("pageContent");
+      if (loading && content) {
+        loading.style.display = "none";
+        content.style.display = "block";
+      }
+    });
+
+    // Fallback: show content after 15s if data didn't load
+    setTimeout(() => {
+      const loading = document.getElementById("loadingScreen");
+      const content = document.getElementById("pageContent");
+      if (loading && content && loading.style.display !== "none") {
+        loading.style.display = "none";
+        content.style.display = "block";
+        console.warn("Fallback: showing page after 15s.");
+      }
+    }, 15000);
+  </script>
+</body>
+</html>

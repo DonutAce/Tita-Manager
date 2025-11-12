@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grammaticode</title>
+  <link rel="stylesheet" type="text/css" href="home menu.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom, #87CEEB, #ffffff);
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      gap: 20px; 
+    }
+
+    h1 {
+      font-size: 120px;
+      color: #FF9800;
+      text-shadow: 2px 2px 5px #000;
+      margin-block-start: 10px;
+      padding: 10px;
+    }
+
+    input[type="range"] {
+      width: 200px;  
+      height: 8px;
+      border-radius: 20px;
+      background: linear-gradient(to right, orange, red); 
+      outline: none;
+      appearance: none; 
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;    
+      height: 20px;
+      border-radius: 100%;
+      background: orange; 
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 0 3px rgba(0,0,0,0.4);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: orange;
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 0 3px rgba(0,0,0,0.4);
+    }
+
+    .btn4 {
+      background: #db7a0c;
+      border: orange;
+      border-radius: 50px;
+      color: rgb(24, 24, 24);
+      padding: 15px;
+      font-size: 22px;
+      margin: 15px;
+      width: 200px;
+      cursor: pointer;
+      box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+      transition: transform 0.2s, background 0.2s;
+      font-style: italic;
+      position: absolute;
+      top: 40px;         
+      left: 60px;       
+
+    }
+
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>Grammaticode</h1>
+    <button class="btn4" onclick="window.location.href='home menu.html'">Back</button>
+<img src="36d6b075-4aa2-4c69-9607-a9569db00935.jpg" alt="36d6b075-4aa2-4c69-9607-a9569db00935.jpg">
+    <div>
+      <label for="music-volume"><h2>Music Volume:</h2></label>
+      <input type="range" id="music-volume" min="0" max="1" step="0.1" value="0.5">
+    </div>
+  </div>
+
+<img src="36d6b075-4aa2-4c69-9607-a9569db00935.jpg" alt="36d6b075-4aa2-4c69-9607-a9569db00935.jpg">
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Tita Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/settings.css">
+    <link rel="stylesheet" href="Styles/navbar.css">
+    <link rel="stylesheet" href="Styles/sidebar.css">
+    <link rel="icon" type="image/png" href="Images/icon-logo.png">
+</head>
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Tita Manager</h2>
+            <label for="sidebar-toggle" class="close-btn">✕</label>
+        </div>
+        
+        <div class="sidebar-nav">
+            <a href="home.html" class="nav-link">🏠 Home</a>
+            <a href="profile.html" class="nav-link">👤 Profile</a>
+            <a href="CTask.html" class="nav-link">➕ Create a Task</a>
+            <a href="games.html" class="nav-link">🎮 Games</a>
+            <a href="feedback.html" class="nav-link">💬 Give Feedback</a>
+            <a href="settings.html" class="nav-link active">⚙️ Settings</a>
+            <a href="about.html" class="nav-link">ℹ️ About us</a>
+            <a href="#" class="nav-link logout">🚪 Logout</a>
+        </div>
+        
+        <div class="sidebar-footer">
+            <p>Hello there!</p>
+            <p>Hope you're having a great day!</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <label for="sidebar-toggle" class="menu-btn">☰ Menu</label>
+                <h1>Tita Manager</h1>
+            </div>
+            <div class="header-right">
+                <p>Settings</p>
+                <p>Customize your experience</p>
+            </div>
+        </header>
+
+        <main class="settings-content">
+            <div class="glow">
+                <div class="glow-content">
+                    <div class="settings-icon">⚙️</div>
+                    <h1>Settings & Preferences</h1>
+                    <p>Customize your Tita Manager experience to suit your workflow</p>
+                </div>
+            </div>
+
+            <div class="settings-grid">
+                <div class="settings-danger">
+                    <div class="section-header">
+                        <h2>🎨 Appearance</h2>
+                        <p>Customize the look and feel</p>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Dark Mode</label>
+                            <span>Toggle between light and dark themes</span>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="dark-mode" checked>
+                            <label for="dark-mode" class="slider"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-danger">
+                    <div class="section-header">
+                        <h2>🔔 Notifications</h2>
+                        <p>Manage your notification preferences</p>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Push Notifications</label>
+                            <span>Receive notifications on your device</span>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="push-notif" checked>
+                            <label for="push-notif" class="slider"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-danger">
+                    <div class="section-header">
+                        <h2>📊 Productivity</h2>
+                        <p>Optimize your workflow settings</p>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Default Priority</label>
+                            <span>Set default priority for new tasks</span>
+                        </div>
+                        <select class="setting-select">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-danger danger-zone">
+                    <div class="section-header">
+                        <h2>⚠️ Danger Zone</h2>
+                        <p>Irreversible actions - proceed with caution</p>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Delete Account</label>
+                            <span>Permanently delete your account and all data</span>
+                        </div>
+                        <button id="deleteAccountBtn" class="action-btn danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="save-section">
+                <button class="save-btn">💾 Save All Changes</button>
+                <p>Changes are saved automatically</p>
+            </div>
+        </main>
+    </div>
+
+    <div id="comfirmDelete" class="warning">
+        <div class="warning-content">
+            <h2>Are you sure you want to delete your account?</h2>
+            <p>This action cannot be undone. All your data will be permanently deleted.</p>
+            <div class="warning-actions">
+                <button id="confirmNoBtn" class="cancel-btn">Cancel</button>
+                <button id="confirmYesBtn" class="yes-btn">Yes, delete it</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+    <script type="module" src="js/settings.js"></script>
+    <script type="module" src="./js/theme.js"></script>
+    <script type="module" src="./js/auth-check.js"></script>
+</body>
+</html>

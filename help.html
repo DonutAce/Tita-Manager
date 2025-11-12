@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - Tita Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles/help.css">
+    <link rel="stylesheet" href="Styles/sidebar.css">
+    <link rel="stylesheet" href="Styles/navbar.css">
+    <link rel="icon" type="image/png" href="Images/icon-logo.png">
+</head>
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Tita Manager</h2>
+            <label for="sidebar-toggle" class="close-btn">✕</label>
+        </div>
+        
+        <div class="sidebar-nav">
+            <a href="home.html" class="nav-link">🏠 Home</a>
+            <a href="profile.html" class="nav-link">👤 Profile</a>
+            <a href="CTask.html" class="nav-link">➕ Create a Task</a>
+            <a href="games.html" class="nav-link">🎮 Games</a>
+            <a href="feedback.html" class="nav-link">💬 Give Feedback</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+            <a href="about.html" class="nav-link">ℹ️ About us</a>
+            <a href="help.html" class="nav-link active">❓ Help & Support</a>
+            <a href="log-in.html" class="nav-link logout">🚪 Logout</a>
+        </div>
+        
+        <div class="sidebar-footer">
+            <p>Hi, I'm Garde</p>
+            <p>Welcome back!</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <label for="sidebar-toggle" class="menu-btn">☰ Menu</label>
+                <h1>Tita Manager</h1>
+            </div>
+            <div class="header-right">
+                <p>Help & Support</p>
+                <p>We're here to help</p>
+            </div>
+        </header>
+
+        <main class="help-content">
+            <!-- Hero Section with Floating Elements -->
+            <div class="hero-section">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+                <div class="hero-content">
+                    <div class="help-icon-large">🛟</div>
+                    <h1 class="hero-title">Need Help?</h1>
+                    <p class="hero-subtitle">We're here to make your journey smooth</p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary">🚀 Quick Start</button>
+                        <button class="btn-secondary">📞 Contact Us</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Help Categories -->
+            <div class="categories-section">
+                <h2 class="section-title">Choose Your Path</h2>
+                <div class="categories-grid">
+                    <div class="category-card beginner">
+                        <div class="category-icon">🌱</div>
+                        <h3>Getting Started</h3>
+                        <p>New to Tita Manager? Start here!</p>
+                        <div class="category-items">
+                            <span>First Steps</span>
+                            <span>Basic Setup</span>
+                            <span>Quick Tour</span>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card advanced">
+                        <div class="category-icon">⚡</div>
+                        <h3>Advanced Features</h3>
+                        <p>Unlock the full potential</p>
+                        <div class="category-items">
+                            <span>Automation</span>
+                            <span>Integrations</span>
+                            <span>Analytics</span>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card troubleshoot">
+                        <div class="category-icon">🔧</div>
+                        <h3>Troubleshooting</h3>
+                        <p>Fix common issues quickly</p>
+                        <div class="category-items">
+                            <span>Bug Fixes</span>
+                            <span>Performance</span>
+                            <span>Account Issues</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Accordion Style -->
+            <div class="faq-section">
+                <div class="faq-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Find instant answers to common questions</p>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do I create my first task?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Click on 'Create a Task' in the sidebar, fill out the form with your task details, set a deadline and priority, then hit submit!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can I organize tasks by categories?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! You can use priority levels (High, Medium, Low) and add custom tags to organize your tasks efficiently.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Is my data secure and private?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! We use enterprise-grade encryption and follow strict privacy policies to keep your data safe.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Contact Hub -->
+            <div class="contact-hub">
+                <div class="hub-header">
+                    <h2>Get in Touch</h2>
+                    <p>Choose your preferred way to reach us</p>
+                </div>
+                <div class="contact-methods">
+                    <div class="contact-card priority">
+                        <div class="contact-decoration"></div>
+                        <div class="contact-icon">⚡</div>
+                        <h3>Urgent Support</h3>
+                        <p>Critical issues only</p>
+                        <div class="contact-info">
+                            <span>24/7 Emergency</span>
+                            <span>911-HELP</span>
+                        </div>
+                        <div class="status-indicator urgent"></div>
+                    </div>
+                    
+                    <div class="contact-card standard">
+                        <div class="contact-decoration"></div>
+                        <div class="contact-icon">💬</div>
+                        <h3>Live Chat</h3>
+                        <p>Real-time assistance</p>
+                        <div class="contact-info">
+                            <span>Mon-Fri, 9AM-6PM</span>
+                            <span>Avg response: 2 min</span>
+                        </div>
+                        <div class="status-indicator online"></div>
+                    </div>
+                    
+                    <div class="contact-card email">
+                        <div class="contact-decoration"></div>
+                        <div class="contact-icon">📧</div>
+                        <h3>Email Support</h3>
+                        <p>Detailed assistance</p>
+                        <div class="contact-info">
+                            <span>titamanager@gmail.com</span>
+                        </div>
+                        <div class="status-indicator available"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="overlay"></div>
+    <script type="module" src="./js/theme.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #DC143C 0%, #B22222 20%, #8B0000 40%, #4B0000 60%, #2B0000 80%, #000000 100%);
+  background-size: 400% 400%;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  animation: backgroundShift 8s ease-in-out infinite;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(220, 20, 60, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.4) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(255, 107, 107, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  animation: glowPulse 6s ease-in-out infinite;
+}
+
+.credits-container {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title-gradient {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #FF6B6B, #FFE66D, #FF8E8E, #FFD93D, #4ECDC4, #FF6B6B);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(255, 107, 107, 0.8),
+               0 0 80px rgba(255, 230, 109, 0.6),
+               0 0 120px rgba(78, 205, 196, 0.4);
+  animation: gradientShift 4s ease-in-out infinite;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.9));
+  letter-spacing: -2px;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 500;
+  max-width: 48rem;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Team Grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto 4rem auto;
+}
+
+/* Team Card */
+.team-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.team-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(220, 20, 60, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Card Image */
+.card-image {
+  position: relative;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.member-img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover .member-img {
+  transform: scale(1.1);
+}
+
+.status-dot {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, #ef4444, #f87171);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+/* Text Styles */
+.member-name {
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.member-role {
+  color: #fca5a5;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  background: rgba(239, 68, 68, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  display: inline-block;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.member-description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Back Button */
+.back-button-container {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.back-button {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: inherit;
+  box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4),
+              0 0 50px rgba(220, 20, 60, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(220, 20, 60, 0.6),
+              0 0 70px rgba(220, 20, 60, 0.3);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+}
+
+.back-button:active {
+  transform: translateY(-3px) scale(1.01);
+}
+
+/* Animations */
+@keyframes backgroundShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 25% 75%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 75% 25%;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .credits-container {
+    padding: 1rem;
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .team-card {
+    padding: 1.5rem;
+  }
+  
+  .member-img {
+    width: 6rem;
+    height: 6rem;
+  }
+  
+  .header {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-card {
+    padding: 1.25rem;
+  }
+  
+  .member-img {
+    width: 5rem;
+    height: 5rem;
+  }
+  
+  .back-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}

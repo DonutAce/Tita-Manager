@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Task Approval</title>
+  <link rel="stylesheet" href="Styles/admin.css">
+</head>
+
+<body>
+  <div class="container">
+        <h1>Task Approval</h1>
+        
+        <div id="loading" class="loading">
+            Loading pending tasks...
+        </div>
+        
+        <div id="proofContainer" class="hidden">
+            <div class="image-wrapper">
+                <img id="proofImage" class="proof-image" alt="Task proof" />
+            </div>
+            
+            <div id="taskInfo" class="task-info">
+                <!-- Task information will be populated here -->
+            </div>
+            
+            <div class="button-group">
+                <button id="approveBtn" class="approve-btn">Approve</button>
+                <button id="rejectBtn" class="reject-btn">Reject</button>
+            </div>
+        </div>
+        
+        <div id="message" class="message hidden">
+            <!-- Success/error messages will appear here -->
+        </div>
+    </div>
+
+    <!-- Image Modal for full-size viewing -->
+    <div id="imageModal" class="image-modal">
+        <img id="modalImage" alt="Full size proof" />
+    </div>
+
+  <script type="module" src="./js/admin.js"></script>
+</body>
+</html>

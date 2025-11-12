@@ -1,0 +1,280 @@
+/* =======================
+   SIDEBAR BASE STYLES
+======================= */
+#sidebar-toggle {
+    display: none;
+}
+
+.sidebar {
+    position: fixed;
+    left: -320px;
+    top: 0;
+    width: 320px;
+    height: 100vh;
+    background-color: #393E46;
+    transition: left 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    z-index: 1000;
+    color: #FAF9F6;
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        left: -280px;
+        width: 280px;
+    }
+}
+
+@media (max-width: 360px) {
+    .sidebar {
+        left: -250px;
+        width: 250px;
+    }
+}
+
+@media (max-width: 320px) {
+    .sidebar {
+        left: -100vw;
+        width: 100vw;
+    }
+}
+
+@media (max-width: 375px) {
+    .sidebar {
+        left: -90vw;
+        width: 90vw;
+    }
+}
+
+#sidebar-toggle:checked~.sidebar {
+    left: 0;
+}
+
+#sidebar-toggle:checked~.overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* -------------------- */
+/* HEADER SECTION */
+/* -------------------- */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(250, 249, 246, 0.1);
+}
+
+.sidebar-header h2 {
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* -------------------- */
+/* RESPONSIVE HEADER */
+/* -------------------- */
+@media (max-width: 480px) {
+    .sidebar-header {
+        padding: 15px;
+    }
+
+    .sidebar-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .sidebar-nav {
+        padding: 10px;
+    }
+
+    .nav-link {
+        padding: 12px;
+    }
+
+    .sidebar-footer {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 375px) {
+    .sidebar-header {
+        padding: 12px;
+    }
+
+    .sidebar-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .nav-link {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+        margin-bottom: 3px;
+    }
+
+    .sidebar-footer {
+        padding: 12px;
+        font-size: 0.8rem;
+    }
+
+    .close-btn {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .sidebar-header h2 {
+        font-size: 1rem;
+    }
+
+    .nav-link {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .sidebar-footer p {
+        font-size: 0.75rem;
+    }
+}
+
+/* -------------------- */
+/* BUTTONS */
+/* -------------------- */
+.close-btn {
+    background: #00ADB5;
+    color: #222831;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+    background: #00c4d4;
+}
+
+/* -------------------- */
+/* NAVIGATION */
+/* -------------------- */
+.sidebar-nav {
+    padding: 15px;
+}
+
+.nav-link {
+    display: block;
+    color: #FAF9F6;
+    text-decoration: none;
+    padding: 15px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(0, 173, 181, 0.1);
+    color: #00ADB5;
+}
+
+.nav-link.active {
+    background-color: #00ADB5;
+    color: #222831;
+}
+
+/* -------------------- */
+/* FOOTER */
+/* -------------------- */
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    border-top: 1px solid rgb(128, 137, 151);
+    width: 100%;
+    background-color: rgba(57, 62, 70);
+}
+
+.sidebar-footer p:first-child {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.sidebar-footer p:last-child {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* -------------------- */
+/* OVERLAY */
+/* -------------------- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(34, 40, 49, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+/*---------------------------light mode here-----------------------------------------*/
+
+/*--------------------------- Light Mode Sidebar ---------------------------*/
+body.light-theme .sidebar {
+    background-color: #ffffff;
+    color: #121212;
+    border-right: 1px solid rgba(18, 18, 18, 0.1);
+}
+
+body.light-theme .sidebar-header h2 {
+    color: #121212;
+}
+
+body.light-theme .close-btn {
+    background: #00ADB5;
+    color: #ffffff;
+}
+
+body.light-theme .close-btn:hover {
+    background: #00c4d4;
+}
+
+body.light-theme .sidebar-nav {
+    padding: 15px;
+}
+
+body.light-theme .nav-link {
+    color: #121212;
+}
+
+body.light-theme .nav-link:hover {
+    background-color: rgba(0, 173, 181, 0.15);
+    color: #00ADB5;
+}
+
+body.light-theme .nav-link.active {
+    background-color: #00ADB5;
+    color: #ffffff;
+}
+
+body.light-theme .sidebar-footer {
+    background-color: #f5f5f5;
+    border-top: 1px solid rgba(18, 18, 18, 0.1);
+    color: #121212;
+}
+
+body.light-theme .sidebar-footer p:first-child,
+body.light-theme .sidebar-footer p:last-child {
+    color: #121212;
+}
+
+body.light-theme .overlay {
+    background: rgba(255, 255, 255, 0.8);
+}

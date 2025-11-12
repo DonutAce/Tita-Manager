@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History Timeline Game</title>
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to bottom right, #001f3f, #001030);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    color: #ffcc00;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: #66b3ff;
+  }
+
+  p {
+    color: #ccc;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+
+  #timeline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 900px;
+    margin-bottom: 20px;
+  }
+
+  .event {
+    background: #02284d;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: grab;
+    border: 2px solid #0055aa;
+    width: 220px;
+    text-align: center;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .event.dragging {
+    opacity: 0.6;
+    background: #004c99;
+    transform: scale(1.05);
+  }
+
+  button {
+    background: #ffcc00;
+    color: #001030;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin: 5px;
+  }
+
+  button:hover {
+    background: #ffd633;
+  }
+
+  #result {
+    margin-top: 20px;
+    font-size: 1.1em;
+    color: #ffcc00;
+  }
+
+  .correct {
+    background: #2ecc71 !important;
+    border-color: #27ae60 !important;
+  }
+
+  .wrong {
+    background: #e74c3c !important;
+    border-color: #c0392b !important;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 10px;
+    font-size: 0.8em;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<h1>🕰️ History Timeline Game</h1>
+<h2 id="roundTitle">Round 1: Ancient History</h2>
+<p>Drag the historical events into the correct chronological order (oldest to most recent), then click <b>Check Answers</b>.</p>
+
+<div id="timeline"></div>
+
+<div>
+  <button id="checkBtn">Check Answers</button>
+  <button id="nextRoundBtn" style="display:none;">Next Round ➡️</button>
+</div>
+<div id="result"></div>
+
+<footer>Made with HTML, CSS & JavaScript</footer>
+
+<script>
+const rounds = [
+  {
+    title: "Ancient History",
+    events: [
+      { event: "Construction of the Great Pyramid of Giza", year: -2560 },
+      { event: "Founding of Rome", year: -753 },
+      { event: "Birth of Alexander the Great", year: -356 },
+      { event: "Julius Caesar assassinated", year: -44 },
+      { event: "Fall of the Western Roman Empire", year: 476 }
+    ]
+  },
+  {
+    title: "Medieval Era",
+    events: [
+      { event: "Rise of the Byzantine Empire", year: 527 },
+      { event: "Vikings begin to raid Europe", year: 793 },
+      { event: "Signing of the Magna Carta", year: 1215 },
+      { event: "The Black Death spreads through Europe", year: 1347 },
+      { event: "Fall of Constantinople", year: 1453 }
+    ]
+  },
+  {
+    title: "Modern History",
+    events: [
+      { event: "The invention of the printing press", year: 1440 },
+      { event: "Columbus discovers America", year: 1492 },
+      { event: "The American Revolution", year: 1776 },
+      { event: "The French Revolution", year: 1789 },
+      { event: "World War I begins", year: 1914 }
+    ]
+  },
+  {
+    title: "20th Century",
+    events: [
+      { event: "World War II ends", year: 1945 },
+      { event: "Man lands on the Moon", year: 1969 },
+      { event: "Fall of the Berlin Wall", year: 1989 },
+      { event: "The Internet becomes public", year: 1991 },
+      { event: "First iPhone released", year: 2007 }
+    ]
+  },
+  {
+    title: "Space & Technology Age",
+    events: [
+      { event: "First photo of a black hole", year: 2019 },
+      { event: "James Webb Space Telescope launched", year: 2021 },
+      { event: "Artemis I Moon mission launched", year: 2022 },
+      { event: "First AI chatbot released to the public", year: 2022 },
+      { event: "First human space tourism flights", year: 2021 }
+    ]
+  }
+];
+
+let currentRound = 0;
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+function loadRound() {
+  const timeline = document.getElementById("timeline");
+  timeline.innerHTML = "";
+  document.getElementById("result").textContent = "";
+  document.getElementById("nextRoundBtn").style.display = "none";
+  document.getElementById("roundTitle").textContent = `Round ${currentRound + 1}: ${rounds[currentRound].title}`;
+
+  const shuffled = shuffle([...rounds[currentRound].events]);
+  shuffled.forEach(e => {
+    const div = document.createElement("div");
+    div.className = "event";
+    div.draggable = true;
+    div.textContent = e.event;
+    div.dataset.year = e.year;
+    timeline.appendChild(div);
+  });
+}
+
+let dragged;
+
+document.addEventListener("dragstart", e => {
+  if (e.target.classList.contains("event")) {
+    dragged = e.target;
+    e.target.classList.add("dragging");
+  }
+});
+
+document.addEventListener("dragend", e => {
+  if (e.target.classList.contains("event")) {
+    e.target.classList.remove("dragging");
+  }
+});
+
+document.getElementById("timeline").addEventListener("dragover", e => {
+  e.preventDefault();
+  const dragging = document.querySelector(".dragging");
+  const afterElement = getDragAfterElement(e.currentTarget, e.clientY);
+  if (afterElement == null) {
+    e.currentTarget.appendChild(dragging);
+  } else {
+    e.currentTarget.insertBefore(dragging, afterElement);
+  }
+});
+
+function getDragAfterElement(container, y) {
+  const draggableElements = [...container.querySelectorAll(".event:not(.dragging)")];
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset, element: child };
+    } else {
+      return closest;
+    }
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+document.getElementById("checkBtn").addEventListener("click", () => {
+  const order = [...document.querySelectorAll(".event")];
+  const sorted = [...rounds[currentRound].events].sort((a, b) => a.year - b.year);
+  let correctCount = 0;
+
+  order.forEach((el, i) => {
+    el.classList.remove("correct", "wrong");
+    const actualYear = parseInt(el.dataset.year);
+    if (actualYear === sorted[i].year) {
+      el.classList.add("correct");
+      correctCount++;
+    } else {
+      el.classList.add("wrong");
+    }
+  });
+
+  const result = document.getElementById("result");
+  if (correctCount === rounds[currentRound].events.length) {
+    result.textContent = "🎉 Perfect! You arranged all events correctly!";
+    document.getElementById("nextRoundBtn").style.display = "inline-block";
+  } else {
+    result.textContent = `✅ ${correctCount}/${rounds[currentRound].events.length} correct. Try again!`;
+  }
+});
+
+document.getElementById("nextRoundBtn").addEventListener("click", () => {
+  currentRound++;
+  if (currentRound < rounds.length) {
+    loadRound();
+  } else {
+    document.getElementById("timeline").innerHTML = "";
+    document.getElementById("roundTitle").textContent = "🏆 Congratulations!";
+    document.getElementById("result").textContent = "You completed all history rounds!";
+    document.getElementById("checkBtn").style.display = "none";
+    document.getElementById("nextRoundBtn").style.display = "none";
+  }
+});
+
+loadRound();
+</script>
+
+</body>
+</html>

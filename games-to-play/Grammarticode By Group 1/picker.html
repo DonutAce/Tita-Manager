@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Quiz Game</title>
+  <meta name="description" content="Test your programming knowledge with interactive coding challenges">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style/picker.css">
+</head>
+
+<body>
+  <main class="quiz-main">
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+      <header class="hero-section">
+        <h1 class="quiz-title">
+          <span class="title-gradient">🛠 Coding Quiz Game</span>
+        </h1>
+        <p class="quiz-subtitle">Choose a language to take the quiz</p>
+      </header>
+
+      <!-- Name input before starting -->
+      <section id="name-section" class="name-section">
+        <p>Enter your name to start:</p>
+        <input type="text" id="playerName" placeholder="Your name">
+        <p id="name-message" style="font-size:0.9rem;color:#555;">
+          Your progress can be saved under your name
+        </p>
+        <button class="primary-button" onclick="startGame()">Start Game</button>
+        <a href="home.html"><button class="secondary-button">Home</button></a>
+      </section>
+
+      <!-- Language choices -->
+      <section id="tabs" class="tabs" style="display:none;">
+        <button class="tab-button java" onclick="chooseDifficulty('java')">
+          <span class="button-text">Java</span>
+          <div class="button-glow"></div>
+        </button>
+        <button class="tab-button html" onclick="chooseDifficulty('html')">
+          <span class="button-text">HTML</span>
+          <div class="button-glow"></div>
+        </button>
+        <button class="tab-button python" onclick="chooseDifficulty('python')">
+          <span class="button-text">Python</span>
+          <div class="button-glow"></div>
+        </button>
+        <button class="tab-button css" onclick="chooseDifficulty('css')">
+          <span class="button-text">CSS</span>
+          <div class="button-glow"></div>
+        </button>
+        <button class="tab-button javascript" onclick="chooseDifficulty('javascript')">
+          <span class="button-text">JavaScript</span>
+          <div class="button-glow"></div>
+        </button>
+      </section>
+
+      <!-- Difficulty selection -->
+      <section id="difficulty-section" class="tabs" style="display:none;">
+        <p>Choose a difficulty:</p>
+        <button class="difficulty-button easy" onclick="loadQuiz('easy')">Easy</button>
+        <button class="difficulty-button medium" onclick="loadQuiz('medium')">Medium</button>
+        <button class="difficulty-button hard" onclick="loadQuiz('hard')">Hard</button>
+        <button class="difficulty-button impossible" onclick="loadQuiz('impossible')">Impossible</button>
+      </section>
+
+      <!-- Quiz box -->
+      <section id="quiz-box" class="quiz-box">
+        <p class="initial-message" style="color: red;">A competitive multi-language coding quiz game.</p>
+      </section>
+
+      <!-- Sounds -->
+      <audio id="correct-sfx" src="music/ding.mp3"></audio>
+      <audio id="wrong-sfx" src="music/buzz.mp3"></audio>
+    </section>
+
+    <!-- Leaderboard at the bottom -->
+    <section id="leaderboard" class="leaderboard">
+      <h2>🏆 Leaderboard</h2>
+      <p id="leaderboard-label">Top users from the database</p>
+      <ul id="leaderboard-list"></ul>
+    </section>
+  </main>
+
+  <!-- Firebase + Script -->
+  <script type="module" src="js/picker.js"></script>
+</body>
+
+</html>

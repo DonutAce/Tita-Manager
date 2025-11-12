@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Give Feedback - Tita Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Styles/feedback.css">
+  <link rel="stylesheet" href="Styles/sidebar.css">
+  <link rel="stylesheet" href="Styles/navbar.css">
+  <link rel="icon" type="image/png" href="Images/icon-logo.png">
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("service_bgk0zu3");
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="loadingScreen">
+    <div class="spinner"></div>
+    <p>Loading Feedback...</p>
+  </div>
+
+  <input type="checkbox" id="sidebar-toggle">
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Tita Manager</h2>
+      <label for="sidebar-toggle" class="close-btn">✕</label>
+    </div>
+
+    <div class="sidebar-nav">
+      <a href="home.html" class="nav-link">🏠 Home</a>
+      <a href="profile.html" class="nav-link">👤 Profile</a>
+      <a href="CTask.html" class="nav-link">➕ Create a Task</a>
+      <a href="games.html" class="nav-link">🎮 Games</a>
+      <a href="feedback.html" class="nav-link active">💬 Give Feedback</a>
+      <a href="settings.html" class="nav-link">⚙️ Settings</a>
+      <a href="about.html" class="nav-link">ℹ️ About us</a>
+      <a href="#" class="nav-link logout">🚪 Logout</a>
+    </div>
+
+    <div class="sidebar-footer">
+      <p>Hello there!</p>
+      <p>Hope you're having a great day!</p>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <header class="header">
+      <div class="header-left">
+        <label for="sidebar-toggle" class="menu-btn">☰ Menu</label>
+        <h1>Tita Manager</h1>
+      </div>
+      <div class="header-right">
+        <p>Give Feedback</p>
+        <p>Help us improve</p>
+      </div>
+    </header>
+
+    <main class="feedback-content">
+      <div class="feedback">
+        <div class="feedback-background">
+          <div class="floating-emoji">💭</div>
+          <div class="floating-emoji">💡</div>
+          <div class="floating-emoji">⭐</div>
+          <div class="floating-emoji">🚀</div>
+        </div>
+        <div class="feedback-content-inner">
+          <div class="feedback-avatar">
+            <div class="avatar-ring"></div>
+            <span>💬</span>
+          </div>
+          <h1 class="title">Your Voice Matters</h1>
+          <p class="subtitle">Help us shape the future of Tita Manager</p>
+          <div class="stats">
+            <div class="stat-item">
+              <span class="stat-number" id="suggestionsCount">0</span>
+              <span class="stat-label">Suggestions</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" id="satisfactionRate">0%</span>
+              <span class="stat-label">Satisfaction</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rating-section">
+        <h2 class="section-title">Quick Rating</h2>
+        <div class="rating-cards">
+          <div class="rating-category" data-category="UI">
+            <div class="category-header">
+              <span class="category-icon">🎨</span>
+              <h3>User Interface</h3>
+            </div>
+            <div class="star-rating display-rating" id="uiRating">0 ★</div>
+          </div>
+
+          <div class="rating-category" data-category="Performance">
+            <div class="category-header">
+              <span class="category-icon">⚡</span>
+              <h3>Performance</h3>
+            </div>
+            <div class="star-rating display-rating" id="performanceRating">0 ★</div>
+          </div>
+
+          <div class="rating-category" data-category="Features">
+            <div class="category-header">
+              <span class="category-icon">🛠️</span>
+              <h3>Features</h3>
+            </div>
+            <div class="star-rating display-rating" id="featuresRating">0 ★</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="submit-btn" id="openRatingForm" style="margin-bottom: 15px;">
+        ⭐ Rate the Website
+      </button>
+
+      <div id="ratingForm" style="display: none; margin-bottom: 20px;">
+        <h3 style="text-align: center; margin: 5px 5px;">Rate the Website</h3>
+        <div class="rating-cards">
+          <div class="rating-category" data-category="UI">
+            <div class="category-header">
+              <span class="category-icon">🎨</span>
+              <h3>User Interface</h3>
+            </div>
+            <div class="star-rating interactive" data-category="UI">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+          </div>
+
+          <div class="rating-category" data-category="Performance">
+            <div class="category-header">
+              <span class="category-icon">⚡</span>
+              <h3>Performance</h3>
+            </div>
+            <div class="star-rating interactive" data-category="Performance">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+          </div>
+
+          <div class="rating-category" data-category="Features">
+            <div class="category-header">
+              <span class="category-icon">🛠️</span>
+              <h3>Features</h3>
+            </div>
+            <div class="star-rating interactive" data-category="Features">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="submitRatings">
+          <span class="btn-icon">✅</span> Submit Ratings
+        </button>
+      </div>
+
+      <div class="feedback-form">
+        <div class="form-container">
+          <div class="form-header">
+            <h2>Share Your Thoughts</h2>
+            <p>Every piece of feedback helps us improve</p>
+          </div>
+
+          <div class="form-parts">
+            <div class="field-group">
+              <label>Subject</label>
+              <input type="text" id="feedbackSubject" placeholder="Enter subject">
+            </div>
+
+            <div class="field-group">
+              <label>Your Feedback</label>
+              <textarea id="feedbackMessage" placeholder="Tell us what's on your mind."></textarea>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label>Priority</label>
+                <select id="feedbackPriority">
+                  <option>Low</option>
+                  <option>Medium</option>
+                  <option>High</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label>Category</label>
+                <select id="feedbackCategory">
+                  <option>User Experience</option>
+                  <option>Performance</option>
+                  <option>Feature Request</option>
+                  <option>Bug Report</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="submit-btn" id="submitFeedback">
+              <span class="btn-icon">🚀</span>
+              Send Feedback
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="overlay"></div>
+
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/feedback.js"></script>
+  <script type="module" src="./js/theme.js"></script>
+  <script type="module" src="./js/auth-check.js"></script>
+
+</body>
+
+</html>

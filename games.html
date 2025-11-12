@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - Tita Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="Styles/games.css">
+    <link rel="stylesheet" href="Styles/sidebar.css">
+    <link rel="stylesheet" href="Styles/navbar.css">
+    <link rel="icon" type="image/png" href="Images/icon-logo.png">
+</head>
+
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Tita Manager</h2>
+            <label for="sidebar-toggle" class="close-btn">✕</label>
+        </div>
+
+        <div class="sidebar-nav">
+            <a href="home.html" class="nav-link">🏠 Home</a>
+            <a href="profile.html" class="nav-link">👤 Profile</a>
+            <a href="CTask.html" class="nav-link">➕ Create a Task</a>
+            <a href="games.html" class="nav-link active">🎮 Games</a>
+            <a href="feedback.html" class="nav-link">💬 Give Feedback</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+            <a href="about.html" class="nav-link">ℹ️ About us</a>
+            <a href="#" class="nav-link logout">🚪 Logout</a>
+        </div>
+
+        <div class="sidebar-footer">
+            <p>Hello there!</p>
+            <p>Hope you're having a great day!</p>
+        </div>
+
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <label for="sidebar-toggle" class="menu-btn">☰ Menu</label>
+                <h1>Tita Manager</h1>
+            </div>
+            <div class="header-right">
+                <p>Mini Games</p>
+                <p>Earn rewards</p>
+            </div>
+        </header>
+
+        <main class="games-content">
+            <div class="game-banner">
+                <div class="banner-content">
+                    <h1>🎮 Game Arena</h1>
+                    <p>Challenge yourself and earn rewards</p>
+                    <!-- <div class="xp-display">0</div> -->
+                </div>
+            </div>
+
+            <!--<div class="zigzag-container">
+                <div class="stat-box left">
+                    <span class="stat-icon">🎯</span>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Games Played</p>
+                    </div>
+                </div>
+                <div class="stat-box right">
+                    <span class="stat-icon">🏅</span>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>High Score</p>
+                    </div>
+                </div>
+                <div class="stat-box left">
+                    <span class="stat-icon">🎖️</span>
+                    <div class="stat-info">
+                        <h3>0</h3>
+                        <p>Achievements</p>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="games-arena">
+                <h2>🎲 Game Collection</h2>
+                <div class="games-content">
+                    <div class="game-circle">
+                        <div class="game-icon">🔍</div>
+                        <h3>Guess The Word <span> By AI</span></h3>
+                        <a href="games-to-play/guess the word AI/GTW.html"><button class="play-btn">Play</button></a>
+                    </div>
+                    <div class="game-circle">
+                        <div class="game-icon">🗿</div>
+                        <h3>History Timeline<span> By AI</span></h3>
+                        <a href="games-to-play/History Timeline AI/History-timeline.html"> <button class="play-btn">Play</button></a>
+                    </div>
+                    <div class="game-circle">
+                        <div class="game-icon">🎭</div>
+                        <h3>Fact or Fake<span> By AI</span></h3>
+                      <a href="games-to-play/fact or fake AI/FoF.html"> <button class="play-btn">Play</button> </a>
+                    </div>
+                    <div class="game-circle">
+                        <div class="game-icon">∜</div>
+                         <h3>Math Quiz<span> By AI</span></h3>
+                       <a href="games-to-play/math quiz (AI)/math-quiz.html">  <button class="play-btn">Play</button> </a>
+                    </div>
+                    <div class="game-circle">
+                        <div class="game-icon">📝</div>
+                        <h3>Grammaticode <span> By Group 1</span></h3>
+                        <a href="games-to-play/Grammarticode By Group 1/home.html"> <button class="play-btn">Play</button></a>
+                    </div>
+                    <div class="game-circle">
+                        <div class="game-icon">🧠</div>
+                         <h3>Word Match <span> By AI</span></h3>
+                        <a href="games-to-play/word match AI/wordMatch.html"> <button class="play-btn">Play</button> </a>
+                    </div>
+                </div>
+            </div>
+
+           <!-- <div class="leaderboard">
+                <h2>🏆 Champions</h2>
+                <div class="places">
+                    <div class="places second">
+                        <div class="place-number">🥈</div>
+                        <div class="place-score">0 XP</div>
+                    </div>
+                    <div class="places first">
+                        <div class="place-number">🥇</div>
+                        <div class="place-score">0 XP</div>
+                    </div>
+                    <div class="places third">
+                        <div class="place-number">🥉</div>
+                        <div class="place-score">0 XP</div>
+                    </div>
+                </div>
+                <div class="your-rank">
+                    <span>Your Rank: 8th Place - 0 XP</span>
+                </div>
+            </div> -->
+        </main>
+    </div>
+
+    <div class="overlay"></div>
+    <script type="module" src="./js/theme.js"></script>
+    <script type="module" src="./js/auth-check.js"></script>
+
+</body>
+
+</html>

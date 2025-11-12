@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Match Game</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #005aa7, #fffde4);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    #game {
+      display: grid;
+      grid-template-columns: repeat(2, 250px);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 22px;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 3px solid transparent;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card:hover {
+      background: #f0f8ff;
+      transform: scale(1.05);
+    }
+
+    .selected {
+      border-color: #0078ff;
+    }
+
+    #message {
+      font-size: 28px;
+      margin-top: 20px;
+      min-height: 30px;
+    }
+
+    #score {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #0078ff;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #005bb5;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧩 Word Match Game</h1>
+  <div id="game"></div>
+  <div id="message"></div>
+  <div id="score">Score: 0</div>
+  <button onclick="resetGame()">Play Again</button>
+
+  <script>
+    const words = [
+      { word: "Brave", meaning: "Showing courage" },
+      { word: "Tiny", meaning: "Very small" },
+      { word: "Journey", meaning: "A long trip" },
+      { word: "Happy", meaning: "Feeling joy" },
+      { word: "Strong", meaning: "Having great power" },
+      { word: "Quiet", meaning: "Making little noise" },
+    ];
+
+    let cards = [];
+    let firstChoice = null;
+    let secondChoice = null;
+    let score = 0;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function setupGame() {
+      const gameDiv = document.getElementById("game");
+      gameDiv.innerHTML = "";
+      const allCards = [];
+
+      words.forEach((item) => {
+        allCards.push({ text: item.word, pair: item.meaning });
+        allCards.push({ text: item.meaning, pair: item.word });
+      });
+
+      cards = shuffle(allCards);
+
+      cards.forEach((c) => {
+        const div = document.createElement("div");
+        div.classList.add("card");
+        div.textContent = c.text;
+        div.onclick = () => selectCard(div, c);
+        gameDiv.appendChild(div);
+      });
+    }
+
+    function selectCard(div, cardData) {
+      if (firstChoice && secondChoice) return;
+
+      div.classList.add("selected");
+
+      if (!firstChoice) {
+        firstChoice = { div, data: cardData };
+      } else if (!secondChoice && div !== firstChoice.div) {
+        secondChoice = { div, data: cardData };
+        checkMatch();
+      }
+    }
+
+    function checkMatch() {
+      const messageDiv = document.getElementById("message");
+
+      if (
+        firstChoice.data.text === secondChoice.data.pair ||
+        secondChoice.data.text === firstChoice.data.pair
+      ) {
+        messageDiv.textContent = "✅ Correct Match!";
+        messageDiv.style.color = "green";
+        score++;
+        document.getElementById("score").textContent = "Score: " + score;
+        firstChoice.div.style.background = "#c8f7c5";
+        secondChoice.div.style.background = "#c8f7c5";
+        firstChoice.div.onclick = null;
+        secondChoice.div.onclick = null;
+      } else {
+        messageDiv.textContent = "❌ Wrong Match!";
+        messageDiv.style.color = "red";
+        setTimeout(() => {
+          firstChoice.div.classList.remove("selected");
+          secondChoice.div.classList.remove("selected");
+        }, 800);
+      }
+
+      setTimeout(() => {
+        messageDiv.textContent = "";
+        firstChoice = null;
+        secondChoice = null;
+      }, 1000);
+    }
+
+    function resetGame() {
+      score = 0;
+      document.getElementById("score").textContent = "Score: 0";
+      setupGame();
+    }
+
+    setupGame();
+  </script>
+</body>
+</html>

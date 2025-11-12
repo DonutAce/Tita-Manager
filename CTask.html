@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Task - Tita Manager</title>
+  <meta name="description" content="Create and manage your tasks efficiently with Tita Manager">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="Styles/addtask.css">
+  <link rel="stylesheet" href="Styles/sidebar.css">
+  <link rel="stylesheet" href="Styles/navbar.css">
+  <link rel="icon" type="image/png" href="Images/icon-logo.png">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div id="loadingScreen">
+    <div class="loader"></div>
+    <p>Loading Create Task...</p>
+  </div>
+
+  <!-- Page Content (hidden until fully loaded) -->
+  <div id="pageContent" class="js-hidden">
+    <input type="checkbox" id="sidebar-toggle">
+
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Tita Manager</h2>
+        <label for="sidebar-toggle" class="close-btn">✕</label>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="home.html" class="nav-link">🏠 Home</a>
+        <a href="profile.html" class="nav-link">👤 Profile</a>
+        <a href="CTask.html" class="nav-link active">➕ Create a Task</a>
+        <a href="games.html" class="nav-link">🎮 Games</a>
+        <a href="feedback.html" class="nav-link">💬 Give Feedback</a>
+        <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        <a href="about.html" class="nav-link">ℹ️ About us</a>
+        <a href="#" class="nav-link logout">🚪 Logout</a>
+      </nav>
+      
+      <div class="sidebar-footer">
+            <p>Hello there!</p>
+            <p>Hope you're having a great day!</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+      <header class="header">
+        <div class="header-left">
+          <label for="sidebar-toggle" class="menu-btn">☰ Menu</label>
+          <h1>Tita Manager</h1>
+        </div>
+        <div class="header-right">
+          <p>Create A Task</p>
+          <p>Stay productive</p>
+        </div>
+      </header>
+
+      <main class="task-content">
+        <div class="wizard-container">
+          <div class="wizard-header">
+            <h1>📝 Task Creation</h1>
+          </div>
+        </div>
+
+        <div class="split-layout">
+          <div class="form-panel">
+            <div class="panel-header">
+              <h2>✨ New Task</h2>
+              <p>Create your next productivity milestone</p>
+            </div>
+            
+            <form class="task-form">
+              <div class="form-group">
+                <label for="task-title">📌 Task Title</label>
+                <input type="text" id="task-title" name="task-title" placeholder="What needs to be done?" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="task-description">📄 Description</label>
+                <textarea id="task-description" name="task-description" placeholder="Add more details about your task..." rows="3"></textarea>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="task-deadline">📅 Deadline</label>
+                  <input type="date" id="task-deadline" name="task-deadline" required>
+                </div>
+                <div class="form-group">
+                  <label for="task-time">⏰ Time</label>
+                  <input type="time" id="task-time" name="task-time">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="task-priority">🎯 Priority Level</label>
+                <div class="priority-selector">
+                  <input type="radio" id="high" name="task-priority" value="high">
+                  <label for="high" class="priority-option high">🔴 High</label>
+                  
+                  <input type="radio" id="medium" name="task-priority" value="medium" checked>
+                  <label for="medium" class="priority-option medium">🟡 Medium</label>
+                  
+                  <input type="radio" id="low" name="task-priority" value="low">
+                  <label for="low" class="priority-option low">🟢 Low</label>
+                </div>
+              </div>
+              
+              <button type="submit" class="create-btn">🚀 Create Task</button>
+            </form>
+          </div>
+
+          <div class="info-panel">
+            <div class="quick-dates">
+              <h3>⚡ Quick Dates</h3>
+              <div class="date-options">
+                <button class="date-option">Today</button>
+                <button class="date-option">Tomorrow</button>
+                <button class="date-option">This Week</button>
+                <button class="date-option">Next Week</button>
+              </div>
+            </div>
+            
+            <div class="task-stats">
+              <h3>📊 Your Progress</h3>
+              <div class="stat-item">
+                <span class="stat-label">Total Tasks</span>
+                <span class="stat-value">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Completed</span>
+                <span class="stat-value">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">In Progress</span>
+                <span class="stat-value" id="taskDoneCount">0</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Overdue</span>
+                <span class="stat-value">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kanban-section">
+          <h2>📋 Tasks</h2>
+          <div class="kanban-board">
+            <div class="kanban-column">
+              <div class="column-header todo">
+                <h3>📝 To Do</h3>
+                <span class="task-count">0</span>
+              </div>
+              <div class="tasks-container"></div>
+            </div>
+            
+            <div class="kanban-column">
+              <div class="column-header done">
+                <h3>✅ Done</h3>
+                <span class="task-count">0</span>
+              </div>
+              <div class="tasks-container"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="overlay"></div>
+  </div>
+
+  <!-- Fallback loader timeout -->
+  <script>
+    // fallback: if JS doesn't hide loader, reveal after 15s
+    setTimeout(() => {
+      const loading = document.getElementById("loadingScreen");
+      const content = document.getElementById("pageContent");
+      if (loading && content && loading.style.display !== "none") {
+        loading.style.display = "none";
+        content.style.display = "block";
+        console.warn("Fallback: showing page after 15s.");
+      }
+    }, 15000);
+  </script>
+
+  <!-- JS Flow -->
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/ctask.js"></script>
+  <script type="module" src="js/theme.js"></script>
+  <script type="module" src="./js/auth-check.js"></script>
+
+</body>
+</html>

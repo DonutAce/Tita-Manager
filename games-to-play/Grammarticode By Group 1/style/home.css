@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #DC143C 0%, #B22222 20%, #8B0000 40%, #4B0000 60%, #2B0000 80%, #000000 100%);
+    background-size: 400% 400%;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    animation: backgroundShift 8s ease-in-out infinite;
+    
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(220, 20, 60, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 0, 0, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 107, 107, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    animation: glowPulse 6s ease-in-out infinite;
+}
+
+/* Main Container */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+.game-title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.title-gradient {
+    background: linear-gradient(45deg, #FF6B6B, #FFE66D, #FF8E8E, #FFD93D, #4ECDC4, #FF6B6B);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(255, 107, 107, 0.8),
+        0 0 80px rgba(255, 230, 109, 0.6),
+        0 0 120px rgba(78, 205, 196, 0.4);
+    animation: gradientShift 4s ease-in-out infinite;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.9));
+    position: relative;
+}
+
+.game-subtitle {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+/* Game Buttons */
+.game-button {
+    position: relative;
+    padding: 1.25rem 3rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 200px;
+    overflow: hidden;
+    font-family: inherit;
+}
+
+.game-button.primary{
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 50%, #FFB3B3 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6),
+        0 0 50px rgba(255, 107, 107, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-button.secondary {
+    background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 50%, #96CEB4 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.6),
+        0 0 50px rgba(78, 205, 196, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+}
+
+.button-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+}
+
+.game-button:hover {
+    transform: translateY(-8px) scale(1.08);
+    animation: buttonPulse 0.6s ease-in-out;
+}
+
+.game-button.primary:hover {
+    box-shadow: 0 20px 40px rgba(255, 107, 107, 0.8),
+        0 0 80px rgba(255, 107, 107, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #FF8E8E 0%, #FFB3B3 50%, #FFD1D1 100%);
+}
+
+.game-button.secondary:hover {
+    box-shadow: 0 20px 40px rgba(78, 205, 196, 0.8),
+        0 0 80px rgba(78, 205, 196, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #44A08D 0%, #96CEB4 50%, #C8E6C9 100%);
+}
+
+.game-button:hover .button-glow {
+    opacity: 1;
+}
+
+.game-button:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes backgroundShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 25% 75%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 75% 25%;
+    }
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes buttonPulse {
+    0% {
+        transform: translateY(-8px) scale(1.08);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.12);
+    }
+
+    100% {
+        transform: translateY(-8px) scale(1.08);
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 1rem;
+    }
+
+    .hero-section {
+        margin-bottom: 2rem;
+    }
+
+    .game-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        min-width: 180px;
+    }
+
+    .button-container {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-button {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+        min-width: 160px;
+    }
+
+    .game-subtitle {
+        padding: 0 1rem;
+    }
+}

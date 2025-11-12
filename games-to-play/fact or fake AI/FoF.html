@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fact or Fake - Extended Edition</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #43cea2, #185a9d);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #statement {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 700px;
+      font-size: 28px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      font-size: 24px;
+      padding: 15px 35px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    #factBtn {
+      background: #4CAF50;
+      color: white;
+    }
+
+    #factBtn:hover {
+      background: #3e8e41;
+      transform: scale(1.05);
+    }
+
+    #fakeBtn {
+      background: #f44336;
+      color: white;
+    }
+
+    #fakeBtn:hover {
+      background: #da190b;
+      transform: scale(1.05);
+    }
+
+    #feedback {
+      margin-top: 25px;
+      font-size: 26px;
+      min-height: 40px;
+    }
+
+    #score {
+      margin-top: 10px;
+      font-size: 22px;
+    }
+
+    #nextBtn {
+      margin-top: 25px;
+      padding: 12px 25px;
+      font-size: 18px;
+      background: #ffd966;
+      color: #333;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+      transition: 0.3s;
+    }
+
+    #nextBtn:hover {
+      background: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧠 Fact or Fake - Extended Edition</h1>
+  <div id="statement">Loading question...</div>
+  <div class="buttons">
+    <button id="factBtn">✅ Fact</button>
+    <button id="fakeBtn">❌ Fake</button>
+  </div>
+  <div id="feedback"></div>
+  <div id="score">Score: 0</div>
+  <button id="nextBtn" onclick="nextQuestion()">Next</button>
+
+  <script>
+    const statements = [
+      // 🌍 Science & Nature
+      { text: "The Earth revolves around the Sun.", correct: true },
+      { text: "Bats are blind.", correct: false },
+      { text: "The Sun is a star.", correct: true },
+      { text: "Lightning never strikes the same place twice.", correct: false },
+      { text: "Sharks are mammals.", correct: false },
+      { text: "Octopuses have three hearts.", correct: true },
+      { text: "Dolphins sleep with one eye open.", correct: true },
+      { text: "Humans have more than 600 bones.", correct: false },
+      { text: "Snakes have eyelids.", correct: false },
+      { text: "Plants make oxygen during photosynthesis.", correct: true },
+
+      // 🧑‍🚀 Space
+      { text: "The Moon produces its own light.", correct: false },
+      { text: "Jupiter is the largest planet in the Solar System.", correct: true },
+      { text: "There are 8 planets in our Solar System.", correct: true },
+      { text: "The first human on the Moon was Neil Armstrong.", correct: true },
+      { text: "Mars is known as the Blue Planet.", correct: false },
+      { text: "The Sun is made mostly of hydrogen.", correct: true },
+      { text: "Saturn has the most moons in our Solar System.", correct: true },
+
+      // 📚 History
+      { text: "The Great Wall of China is visible from space.", correct: false },
+      { text: "World War II ended in 1945.", correct: true },
+      { text: "The first president of the United States was Abraham Lincoln.", correct: false },
+      { text: "Ancient Egyptians built the pyramids.", correct: true },
+      { text: "The Roman Empire fell before the Egyptian civilization.", correct: false },
+      { text: "Christopher Columbus discovered America in 1492.", correct: true },
+
+      // 🐾 Animals
+      { text: "A group of lions is called a pride.", correct: true },
+      { text: "Penguins can fly.", correct: false },
+      { text: "Kangaroos live in Africa.", correct: false },
+      { text: "Elephants are the largest land animals.", correct: true },
+      { text: "Alligators and crocodiles are the same species.", correct: false },
+      { text: "Bees can recognize human faces.", correct: true },
+      { text: "Cats have fewer bones than humans.", correct: false },
+
+      // 🧬 Human Body
+      { text: "The human brain stops growing after age 25.", correct: true },
+      { text: "Your heart is on the right side of your body.", correct: false },
+      { text: "You can taste with your tongue only.", correct: false },
+      { text: "The average adult has 206 bones.", correct: true },
+      { text: "Your fingernails and hair keep growing after death.", correct: false },
+      { text: "Blood is blue inside your body.", correct: false },
+      { text: "Humans share about 60% of their DNA with bananas.", correct: true },
+
+      // 💡 General Knowledge
+      { text: "Bananas grow on trees.", correct: false },
+      { text: "Honey never spoils.", correct: true },
+      { text: "Mount Everest is the tallest mountain on Earth.", correct: true },
+      { text: "Goldfish have a memory span of only three seconds.", correct: false },
+      { text: "You can see the Great Wall of China from space with the naked eye.", correct: false },
+      { text: "The Internet was invented before color TV.", correct: false },
+      { text: "Humans have walked on Mars.", correct: false },
+      { text: "Water boils at 100°C at sea level.", correct: true },
+      { text: "The Eiffel Tower is located in Italy.", correct: false },
+      { text: "Polar bears live in Antarctica.", correct: false },
+      { text: "An ostrich's eye is bigger than its brain.", correct: true },
+      { text: "Sound travels faster in air than in water.", correct: false },
+      { text: "A year on Mercury is shorter than a year on Earth.", correct: true },
+      { text: "Spiders are insects.", correct: false },
+      { text: "Humans can survive in space without a suit for a few minutes.", correct: false },
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+
+    const statementEl = document.getElementById("statement");
+    const feedbackEl = document.getElementById("feedback");
+    const scoreEl = document.getElementById("score");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function showQuestion() {
+      const current = statements[currentIndex];
+      statementEl.textContent = current.text;
+      feedbackEl.textContent = "";
+      nextBtn.style.display = "none";
+    }
+
+    function checkAnswer(isFact) {
+      const current = statements[currentIndex];
+      const correct = current.correct === isFact;
+
+      if (correct) {
+        feedbackEl.textContent = "✅ Correct!";
+        feedbackEl.style.color = "#00ff99";
+        score++;
+      } else {
+        feedbackEl.textContent = "❌ Wrong!";
+        feedbackEl.style.color = "#ff4444";
+      }
+
+      scoreEl.textContent = "Score: " + score;
+      nextBtn.style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      currentIndex++;
+      if (currentIndex < statements.length) {
+        showQuestion();
+      } else {
+        statementEl.textContent = "🎉 Game Over!";
+        feedbackEl.textContent = `You scored ${score} out of ${statements.length}!`;
+        feedbackEl.style.color = "yellow";
+        document.querySelector(".buttons").style.display = "none";
+        nextBtn.style.display = "none";
+      }
+    }
+
+    document.getElementById("factBtn").addEventListener("click", () => checkAnswer(true));
+    document.getElementById("fakeBtn").addEventListener("click", () => checkAnswer(false));
+
+    showQuestion();
+  </script>
+</body>
+</html>

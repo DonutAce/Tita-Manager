@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Math Quiz Game</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial Rounded MT Bold', sans-serif; }
+  body {
+    background: linear-gradient(135deg, #1d2671, #c33764);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+  .container {
+    background: rgba(255,255,255,0.1);
+    padding: 50px 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+  }
+  h1 {
+    margin-bottom: 25px;
+    font-size: 48px;
+    text-shadow: 3px 3px 8px #000;
+  }
+  #question {
+    font-size: 60px;
+    margin: 30px 0;
+    font-weight: bold;
+    color: #ffeb3b;
+    text-shadow: 2px 2px 8px #000;
+  }
+  input {
+    padding: 20px;
+    width: 150px;
+    font-size: 36px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    outline: none;
+    margin-top: 10px;
+  }
+  button {
+    margin-top: 30px;
+    padding: 20px 50px;
+    font-size: 28px;
+    border: none;
+    background: #ffeb3b;
+    color: #000;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+  }
+  button:hover {
+    background: #ffe93d;
+    transform: scale(1.05);
+  }
+  #result {
+    margin-top: 30px;
+    font-size: 40px;
+    font-weight: bold;
+  }
+  #score {
+    margin-top: 25px;
+    font-size: 32px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🧮 Math Quiz</h1>
+  <div id="question">Loading...</div>
+  <input type="number" id="answer" placeholder="?" autofocus>
+  <br>
+  <button onclick="checkAnswer()">Submit</button>
+  <div id="result"></div>
+  <div id="score">Score: 0</div>
+</div>
+
+<script>
+let num1, num2, correctAnswer, score = 0;
+
+function newQuestion() {
+  const operators = ['+', '-', '×'];
+  const op = operators[Math.floor(Math.random() * operators.length)];
+  num1 = Math.floor(Math.random() * 20) + 1;
+  num2 = Math.floor(Math.random() * 20) + 1;
+  if (op === '+') correctAnswer = num1 + num2;
+  if (op === '-') correctAnswer = num1 - num2;
+  if (op === '×') correctAnswer = num1 * num2;
+
+  document.getElementById('question').textContent = `${num1} ${op} ${num2} = ?`;
+  document.getElementById('answer').value = '';
+  document.getElementById('answer').focus();
+}
+
+function checkAnswer() {
+  const userAnswer = parseInt(document.getElementById('answer').value);
+  const result = document.getElementById('result');
+  if (isNaN(userAnswer)) {
+    alert('Please enter an answer!');
+    return;
+  }
+  
+  if (userAnswer === correctAnswer) {
+    score++;
+    result.style.color = '#00ff88';
+    result.textContent = '✅ Correct!';
+  } else {
+    score = Math.max(0, score - 1);
+    result.style.color = '#ff4d4d';
+    result.textContent = `❌ Wrong! Answer: ${correctAnswer}`;
+  }
+  document.getElementById('score').textContent = `Score: ${score}`;
+  setTimeout(() => {
+    result.textContent = '';
+    newQuestion();
+  }, 1500);
+}
+
+newQuestion();
+</script>
+</body>
+</html>
